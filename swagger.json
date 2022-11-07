@@ -1,0 +1,2824 @@
+{
+    "openapi": "3.0.0",
+    "paths": {
+        "/v1/app": {
+            "get": {
+                "operationId": "Get App details",
+                "summary": "",
+                "description": "Get your App details",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/App"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorInternalServer"
+                                }
+                            }
+                        }
+                    }
+                },
+                "tags": ["Apps"],
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/v1/app/balance": {
+            "get": {
+                "operationId": "Get App wallet balance",
+                "summary": "",
+                "description": "Get the balance in your App",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AppBalance"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorInternalServer"
+                                }
+                            }
+                        }
+                    }
+                },
+                "tags": ["Apps"],
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/v1/app/wallet/sign-message": {
+            "post": {
+                "operationId": "Sign a message with app wallet",
+                "summary": "",
+                "description": "Sign a message with a Wallet",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UnsignedMessage"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SignedMessage"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorBadRequest"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorNotFound"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorInternalServer"
+                                }
+                            }
+                        }
+                    }
+                },
+                "tags": ["Apps"],
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/v1/app/wallet/sign-transaction": {
+            "post": {
+                "operationId": "Sign a transaction (does not send to blockchain) with app wallet",
+                "summary": "",
+                "description": "Sign a transaction with a Wallet",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/TransactionRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SignedTransaction"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorBadRequest"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorNotFound"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorInternalServer"
+                                }
+                            }
+                        }
+                    }
+                },
+                "tags": ["Apps"],
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/v1/app/wallet/send-transaction": {
+            "post": {
+                "operationId": "Sign and send a transaction to the blockchain via app wallet",
+                "summary": "",
+                "description": "Send a transaction with a Wallet",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/TransactionRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SentTransaction"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorBadRequest"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorNotFound"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorInternalServer"
+                                }
+                            }
+                        }
+                    }
+                },
+                "tags": ["Apps"],
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/v1/app/wallets": {
+            "get": {
+                "operationId": "Get all wallets",
+                "summary": "",
+                "description": "Get a list of all the Wallet in your App",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Wallet"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorInternalServer"
+                                }
+                            }
+                        }
+                    }
+                },
+                "tags": ["Apps"],
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/v1/contract": {
+            "post": {
+                "operationId": "Deploy a contract",
+                "summary": "",
+                "description": "Deploy a contract for your App. NOTE: In order to complete this\naction, you will need to have Eth in your App's Wallet",
+                "parameters": [],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ContractToDeploy"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/DeployedContract"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorInternalServer"
+                                }
+                            }
+                        }
+                    }
+                },
+                "tags": ["Contracts"],
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/v1/contract/{contractId}/nfts": {
+            "get": {
+                "operationId": "Get all NFTs are that from a specific contract",
+                "summary": "",
+                "description": "Get all NFTs are that from a specific contract",
+                "parameters": [
+                    {
+                        "name": "contractId",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/NFT"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorInternalServer"
+                                }
+                            }
+                        }
+                    }
+                },
+                "tags": ["Contracts"],
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/v1/contracts/estimated-deployment-fees": {
+            "get": {
+                "operationId": "Estimate contract deployment fees",
+                "summary": "",
+                "description": "Estimate the fees needed to deploy a contract. Remember that gas fees fluctuate over time.",
+                "parameters": [
+                    {
+                        "name": "type",
+                        "required": false,
+                        "in": "query",
+                        "description": "The type of Contract you want to deploy",
+                        "schema": {
+                            "default": "MINT_NFT",
+                            "enum": ["MINT_NFT"],
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "name",
+                        "required": false,
+                        "in": "query",
+                        "description": "Defines the token’s name, which other contracts and applications can identify. (e.g. Bored Ape Yacht Club)",
+                        "schema": {
+                            "default": "App name",
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "symbol",
+                        "required": false,
+                        "in": "query",
+                        "description": "Used to define token’s shorthand name or symbol (e.g BAYC)",
+                        "schema": {
+                            "default": "App name with no vowels",
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "maxSupply",
+                        "required": false,
+                        "in": "query",
+                        "description": "Used to set the max number of NFTs",
+                        "schema": {
+                            "type": "number"
+                        }
+                    },
+                    {
+                        "name": "units",
+                        "required": false,
+                        "in": "query",
+                        "description": "Used to set the format for the output of gas prices and transaction fees",
+                        "schema": {
+                            "default": "gwei",
+                            "enum": ["wei", "gwei", "full_token"],
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "metadataURI",
+                        "required": true,
+                        "in": "query",
+                        "description": "Metadata URI for the contract. This allows you to customize things about how the contract appears on marketplaces,\nand set attributes like resale royalties https://docs.opensea.io/docs/contract-level-metadata.\n\nThere is a separate metadata URI that you can set for individual NFTs as well that specify data like rarity\nattributes. See the NFT documentation for more info on this.",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/DeploymentFees"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorInternalServer"
+                                }
+                            }
+                        }
+                    }
+                },
+                "tags": ["Contracts"],
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/v1/wallets": {
+            "post": {
+                "operationId": "Create a wallet",
+                "summary": "",
+                "description": "Create a new Wallet for the App specified in the authorization header\n\nIf email is provided and wallet address is NOT provided, it will attempt to create the user and the wallet.\nIf the wallet address is provided, it will record the wallet address with the provided email or id if it exists in the request.",
+                "parameters": [],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CreateWalletParams"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Wallet"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorBadRequest"
+                                }
+                            }
+                        }
+                    },
+                    "409": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorConflict"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorInternalServer"
+                                }
+                            }
+                        }
+                    }
+                },
+                "tags": ["Wallets"],
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            },
+            "get": {
+                "operationId": "Search wallets",
+                "summary": "",
+                "description": "Search wallets by user email or tags",
+                "parameters": [
+                    {
+                        "name": "email",
+                        "required": false,
+                        "in": "query",
+                        "description": "The email associated with the Wallet",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "tag",
+                        "required": false,
+                        "in": "query",
+                        "description": "Tags associated with this Wallet",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "contractAddress",
+                        "required": false,
+                        "in": "query",
+                        "description": "Wallets that contain at least one NFT from a specific contract",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/SearchWalletResult"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorBadRequest"
+                                }
+                            }
+                        }
+                    },
+                    "409": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorConflict"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorInternalServer"
+                                }
+                            }
+                        }
+                    }
+                },
+                "tags": ["Wallets"],
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/v1/wallet/{id}": {
+            "get": {
+                "operationId": "Retrieve a wallet",
+                "summary": "",
+                "description": "Get Wallet details",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Wallet"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorNotFound"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorInternalServer"
+                                }
+                            }
+                        }
+                    }
+                },
+                "tags": ["Wallets"],
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/v1/wallet/{id}/balance": {
+            "get": {
+                "operationId": "Get wallet balance",
+                "summary": "",
+                "description": "Get the amount of Eth stored in the Wallet",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/WalletBalance"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorNotFound"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorInternalServer"
+                                }
+                            }
+                        }
+                    }
+                },
+                "tags": ["Wallets"],
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/v1/wallet/{id}/nfts": {
+            "get": {
+                "operationId": "Fetch NFTs",
+                "summary": "",
+                "description": "Get all the NFTs in a Wallet",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/NFT"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorNotFound"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorInternalServer"
+                                }
+                            }
+                        }
+                    }
+                },
+                "tags": ["Wallets"],
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/v1/wallet/{id}/sign-message": {
+            "post": {
+                "operationId": "Sign a message",
+                "summary": "",
+                "description": "Sign a message with a Wallet",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UnsignedMessage"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SignedMessage"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorBadRequest"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorNotFound"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorInternalServer"
+                                }
+                            }
+                        }
+                    }
+                },
+                "tags": ["Wallets"],
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/v1/wallet/{id}/sign-transaction": {
+            "post": {
+                "operationId": "Sign a transaction (does not send to blockchain)",
+                "summary": "",
+                "description": "Sign a transaction with a Wallet",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/TransactionRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SignedTransaction"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorBadRequest"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorNotFound"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorInternalServer"
+                                }
+                            }
+                        }
+                    }
+                },
+                "tags": ["Wallets"],
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/v1/wallet/{id}/send-transaction": {
+            "post": {
+                "operationId": "Sign and send a transaction to the blockchain",
+                "summary": "",
+                "description": "Send a transaction with a Wallet",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/TransactionRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SentTransaction"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorBadRequest"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorNotFound"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorInternalServer"
+                                }
+                            }
+                        }
+                    }
+                },
+                "tags": ["Wallets"],
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/v1/wallet/{fromAddress}/permit/{contractAddress}": {
+            "get": {
+                "operationId": "Generate permit proof to allow permitted address to do transfer on user behalf",
+                "summary": "",
+                "description": "Preauthorize the transfer of an NFT created",
+                "parameters": [
+                    {
+                        "name": "fromAddress",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "contractAddress",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "payer",
+                        "required": true,
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PermitSig"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorBadRequest"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorNotFound"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorInternalServer"
+                                }
+                            }
+                        }
+                    }
+                },
+                "tags": ["Wallets"],
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/v1/nfts/uri": {
+            "post": {
+                "operationId": "Create an NFT from a uri",
+                "summary": "",
+                "description": "Create an NFT from a uri and assign it to a Wallet",
+                "parameters": [],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CreateNFTFromUriParams"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/NFTCreated"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorBadRequest"
+                                }
+                            }
+                        }
+                    },
+                    "402": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorInsufficientFunds"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorNotFound"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorInternalServer"
+                                }
+                            }
+                        }
+                    }
+                },
+                "tags": ["NFTs"],
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            },
+            "patch": {
+                "operationId": "Update an NFT from structured metadata",
+                "summary": "",
+                "description": "Update an NFTs from a uri and assign it to an existing NFT",
+                "parameters": [],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UpdateNFTFromURI"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/NFTUpdated"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorBadRequest"
+                                }
+                            }
+                        }
+                    },
+                    "402": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorInsufficientFunds"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorNotFound"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorUnprocessable"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorInternalServer"
+                                }
+                            }
+                        }
+                    }
+                },
+                "tags": ["NFTs"],
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/v1/nfts/structured-metadata": {
+            "post": {
+                "operationId": "Create an NFT from structured metadata",
+                "summary": "",
+                "description": "Create an NFT from structured metadata and assign it to a Wallet based on the\nOpenSea metadata standard (https://docs.opensea.io/docs/metadata-standards)",
+                "parameters": [],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CreateNFTFromStructuredMetadata"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/NFTCreated"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorBadRequest"
+                                }
+                            }
+                        }
+                    },
+                    "402": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorInsufficientFunds"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorNotFound"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorUnprocessable"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorInternalServer"
+                                }
+                            }
+                        }
+                    }
+                },
+                "tags": ["NFTs"],
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/v1/nfts": {
+            "get": {
+                "operationId": "Get an NFT from structured metadata",
+                "summary": "",
+                "description": "Get nfts",
+                "parameters": [
+                    {
+                        "name": "wallet_id",
+                        "required": true,
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "wallet_address",
+                        "required": true,
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "contract_id",
+                        "required": true,
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/NFT"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorBadRequest"
+                                }
+                            }
+                        }
+                    },
+                    "402": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorInsufficientFunds"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorNotFound"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorUnprocessable"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorInternalServer"
+                                }
+                            }
+                        }
+                    }
+                },
+                "tags": ["NFTs"],
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/v1/nft/{id}": {
+            "get": {
+                "operationId": "Get details about an NFT",
+                "summary": "",
+                "description": "Get details about an NFT created with Wally",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/NFT"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorNotFound"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorInternalServer"
+                                }
+                            }
+                        }
+                    }
+                },
+                "tags": ["NFTs"],
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/v1/nft/{id}/transfer/internal": {
+            "post": {
+                "operationId": "Transfer NFT (Internal)",
+                "summary": "",
+                "description": "Transfer an NFT created with Wally to another Wallet within Wally",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/TransferNFTInternalParams"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/NFT"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorNotFound"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorInternalServer"
+                                }
+                            }
+                        }
+                    }
+                },
+                "tags": ["NFTs"],
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/v1/nft/{id}/transfer/external": {
+            "post": {
+                "operationId": "Transfer NFT (External)",
+                "summary": "",
+                "description": "Transfer an NFT created with Wally to an external wallet address",
+                "parameters": [
+                    {
+                        "name": "walletID",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/TransferNFTExternalParams"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/NFT"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorNotFound"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorInternalServer"
+                                }
+                            }
+                        }
+                    }
+                },
+                "tags": ["NFTs"],
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/v1/file": {
+            "post": {
+                "operationId": "Upload a file",
+                "summary": "",
+                "description": "Upload a File to IPFS",
+                "parameters": [],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "$ref": "#/components/schemas/FileToUpload"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UploadedFile"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorInternalServer"
+                                }
+                            }
+                        }
+                    }
+                },
+                "tags": ["Files"],
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/v1/file/{id}": {
+            "delete": {
+                "operationId": "Delete a file",
+                "summary": "",
+                "description": "Delete a File",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    },
+                    "404": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorNotFound"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorInternalServer"
+                                }
+                            }
+                        }
+                    }
+                },
+                "tags": ["Files"],
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            },
+            "get": {
+                "operationId": "Get details about a file",
+                "summary": "",
+                "description": "Get file details",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UploadedFile"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorNotFound"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorInternalServer"
+                                }
+                            }
+                        }
+                    }
+                },
+                "tags": ["Files"],
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/v1/tokens/transfer/internal": {
+            "post": {
+                "operationId": "Transfer tokens to another Wallet",
+                "summary": "",
+                "description": "Transfer tokens between internal Wallets",
+                "parameters": [],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/TransferTokenInternalParams"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/TokenTransferredInternal"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorBadRequest"
+                                }
+                            }
+                        }
+                    },
+                    "402": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorInsufficientFunds"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorNotFound"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorInternalServer"
+                                }
+                            }
+                        }
+                    }
+                },
+                "tags": ["Tokens"],
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/v1/tokens/transfer/external": {
+            "post": {
+                "operationId": "Transfer tokens to an external address",
+                "summary": "",
+                "description": "Transfer tokens to external wallet addresses",
+                "parameters": [],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/TransferTokenExternalParams"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/TokenTransferredExternal"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorBadRequest"
+                                }
+                            }
+                        }
+                    },
+                    "402": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorInsufficientFunds"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorNotFound"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorInternalServer"
+                                }
+                            }
+                        }
+                    }
+                },
+                "tags": ["Tokens"],
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        }
+    },
+    "info": {
+        "title": "Tinywallet API",
+        "description": "Easiest way to create and manage crypto wallets. Get started by creating an API key at https://tinywallet.app\n\n# Getting Started\n\nCreate a developer account, along with an organization and your first app, at https://tinywallet.app. You can\n(and most likely will) have multiple apps. This will help you manage things between your testnet and mainnet services.\nStore your API key somewhere to be used in your app. You won't be able to access this API key again, but we can easily\ngenerate a new one for you in the dashboard.\n\nSomewhere in your code, (most likely in your register user endpoint), you will want to add a request to\n[create a wallet](https://docs.wally.xyz/#operation/Create%20a%20wallet).\n\n```\n  fetch(\n      'https://api.wally.xyz/{v1}/wallets', {\n        method: 'POST',\n        body: JSON.stringify({\n          'email': email,\n          'id': user.id,\n        }),\n        headers={\n          'Content-Type': 'application/json',\n          'Authorization': `Bearer ${wally_api_key}`\n        },\n      }\n  )\n```\n(See the expected response [here](https://docs.wally.xyz/#operation/Create%20a%20wallet))\n\nYou should now successfully have a wallet for that user. You can now reference it either by the ID you passed in,\nor their email address.\n\nYou can now send messages or transactions to be signed on behalf of this user like follows:\n\n```\n  fetch(\n      'https://api.wally.xyz/{v1}/wallets/${user.id}/sign-message', {\n        method: 'POST',\n        body: JSON.stringify({\n          'message': message,\n        }),\n        headers={\n          'Content-Type': 'application/json',\n          'Authorization': `Bearer ${wally_api_key}`\n        },\n      }\n  )\n```\n(See the expected response [here](https://tinywallet.app/#operation/Sign%20a%20message))\n\nIt's as simple as that! And users can always access their wallet via https://tinywallet.app/wallet.\n      ",
+        "version": "0.0.1",
+        "contact": {}
+    },
+    "tags": [],
+    "servers": [
+        {
+            "url": "https://api.tinywallet.app"
+        }
+    ],
+    "components": {
+        "securitySchemes": {
+            "bearer": {
+                "scheme": "bearer",
+                "bearerFormat": "JWT",
+                "type": "http"
+            }
+        },
+        "schemas": {
+            "App": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "description": "This is the ID we use to identify the App"
+                    },
+                    "address": {
+                        "type": "string",
+                        "description": "Wallet address for the App. The wallet associated with this\naddress will be used to pay for fees"
+                    },
+                    "environment": {
+                        "description": "The environment this App operates on.",
+                        "enum": [
+                            "ETHEREUM_GOERLI",
+                            "ETHEREUM",
+                            "IMMUTABLE_X_GOERLI",
+                            "IMMUTABLE_X",
+                            "POLYGON",
+                            "POLYGON_MUMBAI",
+                            "SOLANA",
+                            "SOLANA_TESTNET"
+                        ],
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "Organization name"
+                    },
+                    "clientId": {
+                        "type": "string",
+                        "description": "ClientId of the app"
+                    },
+                    "redirectUrl": {
+                        "type": "string",
+                        "description": "This is the redirectUrl for the App"
+                    }
+                },
+                "required": ["id", "address", "environment", "name"]
+            },
+            "HttpErrorInternalServer": {
+                "type": "object",
+                "properties": {
+                    "code": {
+                        "type": "string",
+                        "default": "INTERNAL_SERVER_ERROR",
+                        "description": "Value:\n\"INTERNAL_SERVER_ERROR\""
+                    },
+                    "status": {
+                        "type": "number",
+                        "default": 500
+                    },
+                    "message": {
+                        "type": "string",
+                        "default": "There was an internal server error when trying to process your request"
+                    }
+                },
+                "required": ["code", "status", "message"]
+            },
+            "AppBalance": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "description": "This is the ID we use to identify the App"
+                    },
+                    "balance": {
+                        "type": "string",
+                        "description": "The amount of funds available in the App"
+                    }
+                },
+                "required": ["id", "balance"]
+            },
+            "UnsignedMessage": {
+                "type": "object",
+                "properties": {
+                    "message": {
+                        "type": "string",
+                        "description": "An unsigned message string"
+                    }
+                },
+                "required": ["message"]
+            },
+            "SignedMessage": {
+                "type": "object",
+                "properties": {
+                    "address": {
+                        "type": "string",
+                        "description": "Public address of the wallet that was used to sign the message"
+                    },
+                    "signature": {
+                        "type": "string",
+                        "description": "The result of signing a message, an [EIP-19](https://eips.ethereum.org/EIPS/eip-191) compatible signature. The\nr, s and v are concatenated into a 65 byte (130 nibble) DataHexString"
+                    }
+                },
+                "required": ["address", "signature"]
+            },
+            "HttpErrorBadRequest": {
+                "type": "object",
+                "properties": {
+                    "code": {
+                        "type": "string",
+                        "description": "One of:\n\"BLOCKCHAIN_ERROR\"\n\"UNPREDICTABLE_FEES\"",
+                        "example": "BLOCKHAIN_ERROR"
+                    },
+                    "status": {
+                        "type": "number",
+                        "default": 400
+                    },
+                    "message": {
+                        "type": "string",
+                        "example": "Description of the error"
+                    }
+                },
+                "required": ["code", "status", "message"]
+            },
+            "HttpErrorNotFound": {
+                "type": "object",
+                "properties": {
+                    "code": {
+                        "type": "string",
+                        "default": "NOT_FOUND",
+                        "description": "Value:\n\"NOT_FOUND\""
+                    },
+                    "status": {
+                        "type": "number",
+                        "default": 404
+                    },
+                    "message": {
+                        "type": "string",
+                        "default": "Resource not found"
+                    }
+                },
+                "required": ["code", "status", "message"]
+            },
+            "TransactionRequest": {
+                "type": "object",
+                "properties": {
+                    "to": {
+                        "type": "string"
+                    },
+                    "from": {
+                        "type": "string"
+                    },
+                    "nonce": {
+                        "type": "number"
+                    },
+                    "gasLimit": {
+                        "type": "number"
+                    },
+                    "gasPrice": {
+                        "type": "number"
+                    },
+                    "data": {
+                        "type": "string"
+                    },
+                    "value": {
+                        "type": "number"
+                    },
+                    "chainId": {
+                        "type": "number"
+                    },
+                    "type": {
+                        "type": "number"
+                    },
+                    "maxPriorityFeePerGas": {
+                        "type": "number"
+                    },
+                    "maxFeePerGas": {
+                        "type": "number"
+                    },
+                    "customData": {
+                        "type": "object"
+                    },
+                    "ccipReadEnabled": {
+                        "type": "boolean"
+                    }
+                },
+                "required": ["to", "gasLimit"]
+            },
+            "SignedTransaction": {
+                "type": "object",
+                "properties": {
+                    "signature": {
+                        "type": "string",
+                        "description": "The result of signing a transaction"
+                    }
+                },
+                "required": ["signature"]
+            },
+            "SentTransaction": {
+                "type": "object",
+                "properties": {
+                    "response": {
+                        "type": "object",
+                        "description": "The result of signing a transaction"
+                    }
+                },
+                "required": ["response"]
+            },
+            "Wallet": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "description": "Unique ID that is used to reference this Wallet"
+                    },
+                    "address": {
+                        "type": "string",
+                        "description": "Public address of the Wallet"
+                    },
+                    "tags": {
+                        "description": "Tags associated with the Wallet",
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "required": ["id", "address", "tags"]
+            },
+            "ContractToDeploy": {
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "description": "The type of Contract you want to deploy",
+                        "default": "MINT_NFT",
+                        "enum": ["MINT_NFT"]
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "Defines the token’s name, which other contracts and applications can identify. (e.g. Bored Ape Yacht Club)",
+                        "default": "App name"
+                    },
+                    "symbol": {
+                        "type": "string",
+                        "description": "Used to define token’s shorthand name or symbol (e.g BAYC)",
+                        "default": "App name with no vowels"
+                    },
+                    "maxSupply": {
+                        "type": "number",
+                        "description": "Used to set the max number of NFTs"
+                    },
+                    "units": {
+                        "description": "Used to set the format for the output of gas prices and transaction fees",
+                        "enum": ["wei", "gwei", "full_token"],
+                        "type": "string",
+                        "default": "gwei"
+                    },
+                    "metadataURI": {
+                        "type": "string",
+                        "description": "Metadata URI for the contract. This allows you to customize things about how the contract appears on marketplaces,\nand set attributes like resale royalties https://docs.opensea.io/docs/contract-level-metadata.\n\nThere is a separate metadata URI that you can set for individual NFTs as well that specify data like rarity\nattributes. See the NFT documentation for more info on this."
+                    }
+                },
+                "required": ["metadataURI"]
+            },
+            "DeployedContract": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "description": "The Wally ID for the contract"
+                    },
+                    "contractAddress": {
+                        "type": "string",
+                        "description": "The blockchain address for the Contract"
+                    },
+                    "transactionHash": {
+                        "type": "string",
+                        "description": "The transaction hash for the Contract deployment"
+                    },
+                    "gasPrice": {
+                        "type": "string",
+                        "description": "The gas price in gwei"
+                    },
+                    "gasLimit": {
+                        "type": "string",
+                        "description": "The gas limit in gwei"
+                    },
+                    "type": {
+                        "type": "string",
+                        "description": "The type of the Contract",
+                        "enum": ["MINT_NFT"]
+                    },
+                    "created": {
+                        "format": "date-time",
+                        "type": "string",
+                        "description": "Date when contract was created"
+                    }
+                },
+                "required": ["id", "contractAddress", "transactionHash"]
+            },
+            "NFT": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "description": "ID for the nft"
+                    },
+                    "contractAddress": {
+                        "type": "string",
+                        "description": "The address of the contract that created the NFT"
+                    },
+                    "txHash": {
+                        "type": "string",
+                        "description": "The blockchain transaction that produced the NFT"
+                    },
+                    "uri": {
+                        "type": "string",
+                        "description": "The location of the resource that hosts the NFT"
+                    },
+                    "walletId": {
+                        "type": "string",
+                        "description": "The current owner of the NFT"
+                    },
+                    "metadata": {
+                        "type": "object",
+                        "description": "Any stored metadata previously saved"
+                    }
+                },
+                "required": ["id", "contractAddress", "txHash", "uri"]
+            },
+            "FeeData": {
+                "type": "object",
+                "properties": {
+                    "maxFeePerGas": {
+                        "type": "string",
+                        "description": "In gwei"
+                    },
+                    "gasPrice": {
+                        "type": "string",
+                        "description": "In gwei"
+                    },
+                    "maxPriorityFeePerGas": {
+                        "type": "string",
+                        "description": "In gwei"
+                    }
+                },
+                "required": ["maxFeePerGas", "gasPrice", "maxPriorityFeePerGas"]
+            },
+            "DeploymentFees": {
+                "type": "object",
+                "properties": {
+                    "gasUnits": {
+                        "type": "string",
+                        "description": "An estimate of the number of gas units needed to deploy the contract"
+                    },
+                    "feeData": {
+                        "description": "An estimate of the current feeData in gwei. Remember that gas prices can fluctuate significantly",
+                        "allOf": [
+                            {
+                                "$ref": "#/components/schemas/FeeData"
+                            }
+                        ]
+                    },
+                    "type": {
+                        "type": "string",
+                        "description": "The contract type",
+                        "enum": ["MINT_NFT"]
+                    },
+                    "fees": {
+                        "type": "string",
+                        "description": "Total estimated cost in gwei"
+                    }
+                },
+                "required": ["gasUnits", "feeData", "type", "fees"]
+            },
+            "CreateWalletParams": {
+                "type": "object",
+                "properties": {
+                    "email": {
+                        "type": "string",
+                        "description": "The email we should associate with the Wallet"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "Unique ID that can be used to reference this Wallet later"
+                    },
+                    "address": {
+                        "type": "string",
+                        "description": "Wallet's on-chain address"
+                    },
+                    "tags": {
+                        "description": "Tags you would like to associate with this Wallet",
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "HttpErrorConflict": {
+                "type": "object",
+                "properties": {
+                    "code": {
+                        "type": "string",
+                        "default": "RESOURCE_CONFLICT",
+                        "description": "Value:\n\"RESOURCE_CONFLICT\""
+                    },
+                    "status": {
+                        "type": "number",
+                        "default": 409
+                    },
+                    "message": {
+                        "type": "string",
+                        "example": "Description of the error"
+                    }
+                },
+                "required": ["code", "status", "message"]
+            },
+            "SearchWalletResult": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "description": "Reference ID that is used to reference this Wallet"
+                    },
+                    "email": {
+                        "type": "string",
+                        "description": "The email we should associate with the Wallet"
+                    },
+                    "address": {
+                        "type": "string",
+                        "description": "Public address of the Wallet"
+                    },
+                    "tags": {
+                        "description": "Tags associated with the Wallet",
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "required": ["id", "email", "address", "tags"]
+            },
+            "WalletBalance": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "description": "Unique ID that is used to reference this Wallet"
+                    },
+                    "balance": {
+                        "type": "string",
+                        "description": "The amount of Eth available in the Wallet"
+                    }
+                },
+                "required": ["id", "balance"]
+            },
+            "PermitSig": {
+                "type": "object",
+                "properties": {
+                    "allowed": {
+                        "type": "boolean"
+                    },
+                    "expiry": {
+                        "type": "object"
+                    },
+                    "holder": {
+                        "type": "string"
+                    },
+                    "nonce": {
+                        "type": "number"
+                    },
+                    "r": {
+                        "type": "string"
+                    },
+                    "s": {
+                        "type": "string"
+                    },
+                    "spender": {
+                        "type": "string"
+                    },
+                    "v": {
+                        "type": "number"
+                    }
+                },
+                "required": [
+                    "expiry",
+                    "holder",
+                    "nonce",
+                    "r",
+                    "s",
+                    "spender",
+                    "v"
+                ]
+            },
+            "CreateNFTFromUriParams": {
+                "type": "object",
+                "properties": {
+                    "contractId": {
+                        "type": "string",
+                        "description": "The contract to use when minting. If no ID is provided, the most recently deployed contract is used"
+                    },
+                    "synchronous": {
+                        "type": "boolean",
+                        "description": "Default false. If true, waits for the blockchain to fully confirm the transaction and returns the results",
+                        "default": false
+                    },
+                    "uri": {
+                        "type": "string",
+                        "description": "The location of the resource that will be converted to an NFT"
+                    },
+                    "walletId": {
+                        "type": "string",
+                        "description": "The Wallet you want to assign the NFT to"
+                    }
+                },
+                "required": ["uri", "walletId"]
+            },
+            "NFTCreated": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "description": "ID for the nft"
+                    },
+                    "appBalance": {
+                        "type": "string",
+                        "description": "How much is left in your App's Wallet after minting"
+                    },
+                    "contractAddress": {
+                        "type": "string",
+                        "description": "The address of the contract that created the NFT"
+                    },
+                    "txHash": {
+                        "type": "string",
+                        "description": "The blockchain transaction that produced the NFT"
+                    },
+                    "uri": {
+                        "type": "string",
+                        "description": "The location of the resource that hosts the NFT"
+                    },
+                    "walletId": {
+                        "type": "string",
+                        "description": "The current owner of the NFT"
+                    }
+                },
+                "required": [
+                    "id",
+                    "appBalance",
+                    "contractAddress",
+                    "txHash",
+                    "uri"
+                ]
+            },
+            "HttpErrorInsufficientFunds": {
+                "type": "object",
+                "properties": {
+                    "code": {
+                        "type": "string",
+                        "default": "INSUFFICIENT_FUNDS",
+                        "description": "Value:\n\"INSUFFICIENT_FUNDS\""
+                    },
+                    "status": {
+                        "type": "number",
+                        "default": 402
+                    },
+                    "message": {
+                        "type": "string",
+                        "default": "Insufficient funds"
+                    }
+                },
+                "required": ["code", "status", "message"]
+            },
+            "AttributesForStructuredMetadata": {
+                "type": "object",
+                "properties": {
+                    "trait_type": {
+                        "type": "string"
+                    },
+                    "value": {
+                        "type": "object"
+                    },
+                    "display_type": {
+                        "type": "object"
+                    }
+                },
+                "required": ["trait_type", "value"]
+            },
+            "StructuredMetadata": {
+                "type": "object",
+                "properties": {
+                    "image": {
+                        "type": "string",
+                        "description": "The URL to the image of the item. Can be just about any type of image, and can be IPFS URLs or paths."
+                    },
+                    "description": {
+                        "type": "string",
+                        "description": "A human readable description of the item. Markdown is supported."
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "Name of the item."
+                    },
+                    "attributes": {
+                        "description": "The attributes for the item, which will show up on the OpenSea page for the item. (see below)",
+                        "allOf": [
+                            {
+                                "$ref": "#/components/schemas/AttributesForStructuredMetadata"
+                            }
+                        ]
+                    },
+                    "background_color": {
+                        "type": "string",
+                        "description": "Background color of the item on OpenSea. Must be a six-character hexadecimal without a pre-pended #."
+                    },
+                    "animation_url": {
+                        "type": "string",
+                        "description": "A URL to a multi-media attachment for the item. The file extensions GLTF, GLB, WEBM, MP4, M4V, OGV, and OGG are supported, along with the audio-only extensions MP3, WAV, and OGA."
+                    },
+                    "youtube_url": {
+                        "type": "string",
+                        "description": "A URL to a YouTube video."
+                    }
+                },
+                "required": ["image"]
+            },
+            "CreateNFTFromStructuredMetadata": {
+                "type": "object",
+                "properties": {
+                    "contractId": {
+                        "type": "string",
+                        "description": "The contract to use when minting. If no ID is provided, the most recently deployed contract is used"
+                    },
+                    "synchronous": {
+                        "type": "boolean",
+                        "description": "Default false. If true, waits for the blockchain to fully confirm the transaction and returns the results",
+                        "default": false
+                    },
+                    "metadata": {
+                        "description": "Metadata in Opensea metadata format",
+                        "allOf": [
+                            {
+                                "$ref": "#/components/schemas/StructuredMetadata"
+                            }
+                        ]
+                    },
+                    "walletId": {
+                        "type": "string",
+                        "description": "The Wallet you want to assign the NFT to"
+                    }
+                },
+                "required": ["metadata", "walletId"]
+            },
+            "HttpErrorUnprocessable": {
+                "type": "object",
+                "properties": {
+                    "code": {
+                        "type": "string",
+                        "default": "UNPROCESSABLE",
+                        "description": "Value:\n\"UNPROCESSABLE\""
+                    },
+                    "status": {
+                        "type": "number",
+                        "default": 422
+                    },
+                    "message": {
+                        "type": "string",
+                        "default": "Unprocessable"
+                    }
+                },
+                "required": ["code", "status", "message"]
+            },
+            "UpdateNFTFromURI": {
+                "type": "object",
+                "properties": {
+                    "uri": {
+                        "type": "string",
+                        "description": "The location of the resource that will be converted to an NFT"
+                    },
+                    "nftId": {
+                        "type": "string",
+                        "description": "The NFT you want to update"
+                    },
+                    "contractId": {
+                        "type": "string",
+                        "description": "The contract the NFT belongs to"
+                    }
+                },
+                "required": ["uri", "nftId", "contractId"]
+            },
+            "NFTUpdated": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "description": "ID for the nft"
+                    },
+                    "uri": {
+                        "type": "string",
+                        "description": "New URI for the nft"
+                    }
+                },
+                "required": ["id", "uri"]
+            },
+            "TransferNFTInternalParams": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "description": "The id of the NFT you want to transfer"
+                    },
+                    "toWalletId": {
+                        "type": "string",
+                        "description": "The Wallet you want to transfer the NFT to"
+                    }
+                },
+                "required": ["id", "toWalletId"]
+            },
+            "TransferNFTExternalParams": {
+                "type": "object",
+                "properties": {
+                    "nftId": {
+                        "type": "string",
+                        "description": "The id of the NFT you want to transfer"
+                    },
+                    "toAddress": {
+                        "type": "string",
+                        "description": "The external address you want to transfer the NFT to"
+                    }
+                },
+                "required": ["nftId", "toAddress"]
+            },
+            "FileToUpload": {
+                "type": "object",
+                "properties": {
+                    "file": {
+                        "type": "string",
+                        "description": "A File that is meant to be uploaded",
+                        "format": "binary"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "Name of the file"
+                    }
+                },
+                "required": ["file", "name"]
+            },
+            "UploadedFile": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "description": "The resource ID for the File"
+                    },
+                    "hash": {
+                        "type": "string",
+                        "description": "The IPFS hash for the File"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The name your provided when uploading the file"
+                    },
+                    "uri": {
+                        "type": "string",
+                        "description": "A File to upload"
+                    }
+                },
+                "required": ["id", "hash", "name", "uri"]
+            },
+            "TransferTokenInternalParams": {
+                "type": "object",
+                "properties": {
+                    "amount": {
+                        "type": "number",
+                        "description": "The amount of the token you want to transfer"
+                    },
+                    "walletId": {
+                        "type": "string",
+                        "description": "The Wallet you want to transfer the NFT to"
+                    }
+                },
+                "required": ["amount", "walletId"]
+            },
+            "TokenTransferredInternal": {
+                "type": "object",
+                "properties": {
+                    "walletId": {
+                        "type": "string",
+                        "description": "The Wallet receiving the transfer"
+                    }
+                },
+                "required": ["walletId"]
+            },
+            "TransferTokenExternalParams": {
+                "type": "object",
+                "properties": {
+                    "amount": {
+                        "type": "number",
+                        "description": "The amount of the token you want to transfer"
+                    },
+                    "toAddress": {
+                        "type": "string",
+                        "description": "The external address you want to transfer the NFT to"
+                    }
+                },
+                "required": ["amount", "toAddress"]
+            },
+            "TokenTransferredExternal": {
+                "type": "object",
+                "properties": {
+                    "address": {
+                        "type": "string",
+                        "description": "The address receiving the transfer"
+                    }
+                },
+                "required": ["address"]
+            }
+        }
+    }
+}

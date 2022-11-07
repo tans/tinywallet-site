@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Tinywallet | 规模化数字钱包解决方案</title>
+    <meta name="description"
+        content="Tinywallet is a massive adoption solution for web3, Build-in wallet , cross chain support.">
+    <link rel="stylesheet" type="text/css" href="app.min.css">
+    <style type="text/css">
+        html,
+        body {
+            background: #333;
+            color: #fff;
+        }
+    </style>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <script src="https://unpkg.com/typewriter-effect@latest/dist/core.js"></script>
+</head>
+
+<body id="body" class="px-4 py-10 from-blue-500 bg-gradient-to-br to-red-500">
+
+    <div class="absolute top-2 right-2">
+        <img alt="aave-icon" src="https://cdn.jsdelivr.net/gh/atomiclabs/cryptocurrency-icons/svg/color/aave.svg"
+            class="w-6 coinicon" style="display: none;" />
+        <img alt="btc-icon" src="https://cdn.jsdelivr.net/gh/atomiclabs/cryptocurrency-icons/svg/color/btc.svg"
+            class="w-6 coinicon" style="display: none;" />
+        <img alt="eth-icon" src="https://cdn.jsdelivr.net/gh/atomiclabs/cryptocurrency-icons/svg/color/eth.svg"
+            class="w-6 coinicon" style="display: none;" />
+        <img alt="matic-icon" src="https://cdn.jsdelivr.net/gh/atomiclabs/cryptocurrency-icons/svg/color/matic.svg"
+            class="w-6 coinicon" style="display: none;" />
+        <img alt="bnb-icon" src="https://cdn.jsdelivr.net/gh/atomiclabs/cryptocurrency-icons/svg/color/bnb.svg"
+            class="w-6 coinicon" style="display: none;" />
+
+        <img alt="ltc-icon" src="https://cdn.jsdelivr.net/gh/atomiclabs/cryptocurrency-icons/svg/color/ltc.svg"
+            class="w-6 coinicon" style="display: none;" />
+        <img alt="eth-icon" src="https://cdn.jsdelivr.net/gh/atomiclabs/cryptocurrency-icons/svg/color/eth.svg"
+            class="w-6 coinicon" />
+    </div>
+
+
+    <div class="max-w-screen-md mx-auto bg-black opacity-80">
+        <div class="p-4 flex items-end">
+            <h1
+                class="font-black mr-4 text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-br from-blue-200 to-green-400">
+                Tinywallet </h1>
+            <div id='app' class="text-white font-black"></div>
+        </div>
+
+        <div class="p-4">
+            <h1 id="tinywallet-connect-web2-and-web3"
+                class="mt-4 text-2xl font-extrabold text-transparent bg-clip-text bg-gradient-to-br from-purple-500 to-red-400">
+                私有化部署的托管钱包解决方案</h1>
+            <h2 id="features"
+                class="mt-4 text-2xl font-extrabold text-transparent bg-clip-text bg-gradient-to-br from-yellow-50 to-green-400">
+                功能特点</h2>
+            <ol>
+                <li class="p-2">1. 无缝接入传统系统和账号</li>
+                <li class="p-2">2. 可定制私有化部署,安全可控</li>
+                <li class="p-2">3. 基于Http接口, 接入简单</li>
+            </ol>
+            <h2 id="how-and-why"
+                class="mt-4 text-2xl font-extrabold text-transparent bg-clip-text bg-gradient-to-br from-yellow-50 to-green-400">
+                托管钱包的系统优势</h2>
+            <ol>
+                <li class="p-2">简单易用 - 目前和未来用户托管钱包的用户规模和使用频率仍然是主流. 通过托管钱包提升用户使用体验和钱包安全. 品牌自行决定控制资产的提现规则,
+                    更符合目前主流的商业规则和监管要求.
+                </li>
+                <li class="p-2">多链支持 - 托管钱包可以隐藏各种多链,跨链操作细节, 让资产流通自如</li>
+                <li class="p-2">去中心化特性 - 中心化的托管钱包解决方案, 是否与去中心化的区块链矛盾, 其实多节点的中心化也是一种去中心化, 每个中心化节点为了提高其长期价值必须做到安全和自由流通.
+                    通过每个中心化的节点,实现去中心化网络的价值最大化.</li>
+            </ol>
+            <h2 id="usage"
+                class="mt-4 text-2xl font-extrabold text-transparent bg-clip-text bg-gradient-to-br from-yellow-50 to-green-400">
+                使用案例</h2>
+
+            <p class="p-2">独立交易市场</p>
+            <p class="text-gray-400 p-2">在线私域社群, 游戏等搭建内部交易市场. 快速上线, 0外部抽成(比如:opensea 2.5%)</p>
+
+            <p class="p-2">NFT 票务, 纪念品市场</p>
+            <p class="text-gray-400 p-2">规模化低成本的NFT票务/纪念品系统</p>
+
+            <p class="p-2">NFT 传统会员系统</p>
+            <p class="text-gray-400 p-2">与小程序,电商网站等系统结合, 实现分销,分成,分享等新的NFT玩法</p>
+
+            <p class="p-2">加密空投互动平台</p>
+            <p class="text-gray-400 p-2">实现0Gas的加密空投互动平台 Try it. <a href="https://sabi.fun">https://sabi.fun</a></p>
+            <h2 id="on-premises"
+                class="mt-4 text-2xl font-extrabold text-transparent bg-clip-text bg-gradient-to-br from-yellow-50 to-green-400">
+                私有化部署</h2>
+            <ul>
+                <li class="p-2">1. 托管钱包私有化部署是部署在项目方自己的主机或者云服务器上, 安全可控.</li>
+                <li class="p-2">2. 集成已有账号系统,电商系统. 通过定制方案实现0Gas费, 让普通用户无需钱包, 无需Gas即可拥有加密资产. 从而实现大规模的应用</li>
+                <li class="p-2">3. 基于HTTP接口的集成, 源码交付, 支持定制</li>
+            </ul>
+            <p>
+            </p>
+
+        </div>
+
+        <div class="text-center">
+            <div class="text-blue-200">联系微信咨询</div>
+            <img src="https://caidan2.com/img/qrcode.jpeg" style="width: 150px;" class="block mx-auto" />
+        </div>
+        <br />
+    </div>
+
+    <script type="text/javascript">
+        var app = document.getElementById('app');
+
+        var typewriter = new Typewriter(app, {
+            loop: true,
+            delay: 200,
+        });
+
+        typewriter
+            .typeString('Simple')
+            .pauseFor(1000)
+            .deleteAll(100)
+            .typeString('Integrable')
+            .pauseFor(1000)
+            .deleteAll(100)
+            .typeString('Customable')
+            .pauseFor(1000)
+            .deleteAll(100)
+            .typeString('On-Permises')
+            .pauseFor(2000)
+            .start();
+
+
+        let ___i = 0
+        setInterval(() => {
+            let coinicons = document.getElementsByClassName('coinicon')
+
+            Array.prototype.forEach.bind(coinicons)(function (c, index) {
+                c.style.display = 'none';
+                if (___i % 6 == index) {
+                    c.style.display = 'block';
+                }
+            })
+            ___i++;
+        }, 2000);
+
+
+    </script>
+
+
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/p5.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.topology.min.js"></script>
+	<script>
+	VANTA.TOPOLOGY({
+	  el: "#body",
+	  mouseControls: true,
+	  touchControls: true,
+	  gyroControls: false,
+	  minHeight: 200.00,
+	  minWidth: 200.00,
+	  scale: 1.00,
+	  scaleMobile: 1.00,
+	  color: 0x89964e
+	})
+	</script> -->
+
+
+</body>
+
+</html>
